@@ -1,4 +1,4 @@
-//package TicTacToe;
+package TicTacToe;
 
 import java.awt.geom.PathIterator;
 import java.util.ArrayList;
