@@ -1,4 +1,4 @@
-package TicTacToe;
+//package TicTacToe;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -99,6 +99,8 @@ public class Board extends JPanel implements Observer {
 		//g2.draw(super.playerX());
 
 		g2.setColor(Color.BLACK);
+		Font biggerFont = new Font("Arial", Font.PLAIN, 90);
+		g2.setFont(biggerFont);
 		for (int i = 0; i < 3; i++)
 		{
 			for (int j = 0; j < 3; j++)
@@ -106,11 +108,11 @@ public class Board extends JPanel implements Observer {
 				System.out.println(i + " " +  j + " " + moves[i][j]);
 				if(moves[i][j] == PLAYER_ONE)
 				{
-					g2.drawString("X", i*100+10, j*100+10);
+					g2.drawString("X", i*100+10, j*100+90);
 				}
 				else if (moves[i][j] == PLAYER_TWO)
 				{
-					g2.drawString("O", i*100+10, j*100+10);
+					g2.drawString("O", i*100+10, j*100+90);
 				}
 			}
 		}
