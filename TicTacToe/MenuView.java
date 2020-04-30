@@ -1,4 +1,4 @@
-package TicTacToe;
+//package TicTacToe;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -23,21 +23,23 @@ public class MenuView {
 		menu.add(dark);
 		menu.add(light);
 		frame.add(menu);
-		
+
+		Color line;
 		menu.setLayout(new BoxLayout(menu, BoxLayout.Y_AXIS));
 		light.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				line = Color.BLACK;
 				LightBoard lb = new LightBoard();
 				frame.setContentPane(lb);
 				frame.invalidate();
-				frame.validate();
+				frame.validate(); 
 				//Model model = new Model(lb);
 				//BoardView bv = new BoardView(model);
 				//frame.remove(menu);
-				//frame.add(lb);
+				//frame.add(lb)
 			}
 
 		});
@@ -46,20 +48,19 @@ public class MenuView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				line = Color.WHITE;
+
 				DarkBoard db = new DarkBoard();
 				frame.setContentPane(db);
 				frame.invalidate();
 				frame.validate();
-				Board bv = new Board(Color.GREEN);
-				frame.remove(menu);
 			}
 
 		});
-		
+
 		frame.pack();
 		frame.setVisible(true);
 		frame.setSize(500,500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-	}
 }

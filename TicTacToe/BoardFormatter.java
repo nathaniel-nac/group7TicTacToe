@@ -1,4 +1,4 @@
-package TicTacToe;
+//package TicTacToe;
 
 public interface BoardFormatter {
 	void formatColor();

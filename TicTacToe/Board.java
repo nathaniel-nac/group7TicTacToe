@@ -1,8 +1,7 @@
-package TicTacToe;
+//package TicTacToe;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseAdapter;
+import java.awt.event.*;
 import java.awt.geom.Rectangle2D;
 import java.util.Observable;
 import java.util.Observer;
@@ -19,14 +18,31 @@ public class Board extends JPanel implements Observer {
 	private final int PLAYER_TWO = 2;
 	private int currentPlayer;
 
+	public static void main (String[]args)
+	{
+		JFrame frame = new JFrame();
+		Board b = new Board(Color.BLACK);
+
+		frame.add(b);
+		frame.pack();
+		frame.show();
+	}
+
 	public Board(Color c) {
 		this.c = c;
 		
+		JButton undo = new JButton("Undo");
+		undo.addActionListener(new ButtonListener());
+		this.add(undo);
 		model = new Model();
 		moves = model.getMoves();
 		model.addObserver(this);
+		JTextArea player = new JTextArea();
+		this.add(player);
+
+		currentPlayer = PLAYER_ONE;
 		this.addMouseListener(new MouseAdapter() {
-			private int counter = 0;
+			private int counter = 1;
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
@@ -34,10 +50,12 @@ public class Board extends JPanel implements Observer {
 				if (counter%2==0)
 				{
 					currentPlayer = PLAYER_ONE;
+					player.setText("Player 1's Turn");
 				}
 				else
 				{
 					currentPlayer = PLAYER_TWO;
+					player.setText("Player 2's Turn");
 				}
 				counter++;
 			
@@ -78,6 +96,8 @@ public class Board extends JPanel implements Observer {
 				}
 			}
 		});
+
+		
 	}
 
 	public void paintComponent(Graphics g) {
@@ -128,11 +148,29 @@ public class Board extends JPanel implements Observer {
 		repaint();
 	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		Board b = new Board(Color.BLACK);
 		JFrame frame = new JFrame();
+		JButton undo = new JButton();
+		undo.addActionListener(new ButtonListener());
 		frame.add(b);
 		frame.pack();
 		frame.show();
+	}*/
+
+public class ButtonListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			model.undo();
+			if (currentPlayer == PLAYER_ONE)
+			{
+				currentPlayer = PLAYER_TWO;
+			}
+			else
+			{
+				currentPlayer = PLAYER_ONE;
+			}
+		}
 	}
 }
