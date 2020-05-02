@@ -1,4 +1,4 @@
-//package TicTacToe;
+package TicTacToe;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -39,14 +39,53 @@ public class Board extends JPanel implements Observer {
 		model.addObserver(this);
 		JTextArea player = new JTextArea();
 		this.add(player);
-
+		JTextArea winner = new JTextArea();
+		this.add(winner);
 		currentPlayer = PLAYER_ONE;
 		this.addMouseListener(new MouseAdapter() {
-			private int counter = 1;
+			private int counter = 0;
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
 				//Keeps track of the current player
+				try {;
+				int x0 = e.getX();
+				int y0 = e.getY();
+				int x = -1;
+				int y = -1;
+				
+				//Getting the position of the player on the x - axis
+				if (x0 <= 100) {
+					x = 0;
+				} else if (x0 <= 200) {
+					x = 1;
+				} else if (x0 <= 300) {
+					x = 2;
+				}
+				
+				//Getting the position of the player on the y - axis
+				if (y0 <= 100) {
+					y = 0;
+				} else if (y0 <= 200) {
+					y = 1;
+				} else if (y0 <= 300) {
+					y = 2;
+				}
+				
+				if (moves[x][y] != 0)
+				{
+					counter--;
+				}
+				else
+				{
+					model.update(x,y, currentPlayer);
+				}
+				
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				counter--;
+			}
+				counter++;
 				if (counter%2==0)
 				{
 					currentPlayer = PLAYER_ONE;
@@ -57,46 +96,50 @@ public class Board extends JPanel implements Observer {
 					currentPlayer = PLAYER_TWO;
 					player.setText("Player 2's Turn");
 				}
-				counter++;
-			
+				
+				if (model.getWinner()!=0)
+				{
+					winner.setText("Player " + model.getWinner() + " won!");
+				}
+				else if (model.boardIsFull() && model.getWinner()==0)
+				{
+					winner.setText("It's a tie!");
+				}
 			}
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				try {
-					System.out.println("Mouse pressed worked");
-					int x0 = e.getX();
-					System.out.println("X coord worked");
-					int y0 = e.getY();
-					System.out.println("Y coord worked");
-					int x = -1;
-					int y = -1;
-					
-					//Getting the position of the player on the x - axis
-					if (x0 <= 100) {
-						x = 0;
-					} else if (x0 <= 200) {
-						x = 1;
-					} else if (x0 <= 300) {
-						x = 2;
-					}
-					
-					//Getting the position of the player on the y - axis
-					if (y0 <= 100) {
-						y = 0;
-					} else if (y0 <= 200) {
-						y = 1;
-					} else if (y0 <= 300) {
-						y = 2;
-					}
-					
-					model.update(x,y, currentPlayer);
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-				}
+//				try {;
+//					int x0 = e.getX();
+//					int y0 = e.getY();
+//					int x = -1;
+//					int y = -1;
+//					
+//					//Getting the position of the player on the x - axis
+//					if (x0 <= 100) {
+//						x = 0;
+//					} else if (x0 <= 200) {
+//						x = 1;
+//					} else if (x0 <= 300) {
+//						x = 2;
+//					}
+//					
+//					//Getting the position of the player on the y - axis
+//					if (y0 <= 100) {
+//						y = 0;
+//					} else if (y0 <= 200) {
+//						y = 1;
+//					} else if (y0 <= 300) {
+//						y = 2;
+//					}
+//					
+//					model.update(x,y, currentPlayer);
+//					
+//				} catch (Exception e1) {
+//					// TODO Auto-generated catch block
+//				}
 			}
 		});
-
 		
 	}
 
@@ -136,8 +179,6 @@ public class Board extends JPanel implements Observer {
 				}
 			}
 		}
-		
-		
 	}
 		
 	
@@ -145,6 +186,8 @@ public class Board extends JPanel implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
+		//Check for winner and/or board is full
+		moves = model.getMoves();
 		repaint();
 	}
 
