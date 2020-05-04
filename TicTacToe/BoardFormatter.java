@@ -1,5 +1,9 @@
-//package TicTacToe;
+package TicTacToe;
+
+import java.awt.*;
 
 public interface BoardFormatter {
-	void formatColor();
+	public Color formatLineColor();
+	public Color formatBoardColor();
+	public Color formatXOColor();
 }

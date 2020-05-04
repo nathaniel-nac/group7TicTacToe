@@ -1,17 +1,25 @@
-//package TicTacToe;
+package TicTacToe;
 
-import java.awt.Color;
+import java.awt.*;
 
-public class DarkBoard extends Board implements BoardFormatter{
+public class DarkBoard implements BoardFormatter{
 
-	public DarkBoard()
-	{
-		super(Color.WHITE);
-	}
-	@Override
-	public void formatColor() {
-		// TODO Auto-generated method stub
-		this.setBackground(Color.BLACK);
-	}
+    @Override
+    public Color formatLineColor() {
+        // TODO Auto-generated method stub
+        return Color.WHITE;
+    }
 
+    @Override
+    public Color formatBoardColor() {
+        // TODO Auto-generated method stub
+        return Color.BLACK;
+    }
+
+    @Override
+    public Color formatXOColor() {
+        // TODO Auto-generated method stub
+        return Color.WHITE;
+    }
+    
 }

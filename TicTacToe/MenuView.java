@@ -23,23 +23,19 @@ public class MenuView {
 		menu.add(dark);
 		menu.add(light);
 		frame.add(menu);
-
-		Color line;
 		menu.setLayout(new BoxLayout(menu, BoxLayout.Y_AXIS));
 		light.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//line = Color.BLACK;
-				LightBoard lb = new LightBoard();
-				frame.setContentPane(lb);
-				frame.invalidate();
-				frame.validate();
-				// Model model = new Model(lb);
-				// BoardView bv = new BoardView(model);
-				// frame.remove(menu);
-				// frame.add(lb)
+				BoardFormatter lb = new LightBoard();
+				Board b = new Board(lb);
+				frame.getContentPane().remove(menu);
+				frame.setContentPane(b);
+				frame.revalidate();
+		        frame.pack();
+		        frame.setSize(500, 500);
 			}
 
 		});
@@ -48,12 +44,13 @@ public class MenuView {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//line = Color.WHITE;
-
-				DarkBoard db = new DarkBoard();
-				frame.setContentPane(db);
-				frame.invalidate();
-				frame.validate();
+				BoardFormatter db = new DarkBoard();
+				Board b = new Board(db);
+                frame.getContentPane().remove(menu);
+                frame.setContentPane(b);
+                frame.revalidate();
+                frame.pack();
+                frame.setSize(500, 500);
 			}
 
 		});
