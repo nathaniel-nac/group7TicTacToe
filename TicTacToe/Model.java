@@ -12,7 +12,6 @@ public class Model extends Observable {
 	int winner = 0;
 
 	public Model() {
-		// this.b = b;
 		moves = new int[3][3];
 		currentMove = new int[2];
 		previousMove = new int[2];
@@ -29,6 +28,7 @@ public class Model extends Observable {
 	public void undo() {
 		moves[currentMove[0]][currentMove[1]] = 0;
 
+		// Set current move to equal previous move
 		currentMove[0] = previousMove[0];
 		currentMove[1] = previousMove[1];
 
@@ -37,7 +37,6 @@ public class Model extends Observable {
 	}
 
 	public void update(int x, int y, int player) {
-		// System.out.println("update worked");
 		previousMove[0] = currentMove[0];
 		previousMove[1] = currentMove[1];
 		currentMove[0] = x;

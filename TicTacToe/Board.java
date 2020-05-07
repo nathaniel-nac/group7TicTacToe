@@ -115,6 +115,7 @@ public class Board extends JPanel implements Observer {
 		Graphics2D g2 = (Graphics2D) g;
 		Rectangle2D.Double boardSize = new Rectangle2D.Double(0,0,300,300);
         g2.setColor(this.formatter.formatBoardColor());//changes boardcolor
+        
         g2.fill(boardSize);
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
@@ -125,8 +126,8 @@ public class Board extends JPanel implements Observer {
 			}
 		}
 		
+		
 		//Draw x and o//
-		g2.setColor(this.formatter.formatXOColor());//xocolor
 		Font biggerFont = new Font("Arial", Font.PLAIN, 90);
 		g2.setFont(biggerFont);
 		for (int i = 0; i < 3; i++)
@@ -136,21 +137,25 @@ public class Board extends JPanel implements Observer {
 				System.out.println(i + " " +  j + " " + moves[i][j]);
 				if(moves[i][j] == PLAYER_ONE)
 				{
+					g2.setColor(this.formatter.formatXColor());
 					g2.drawString("X", i*100+10, j*100+90);
 				}
 				else if (moves[i][j] == PLAYER_TWO)
 				{
+					g2.setColor(this.formatter.formatOColor());
 					g2.drawString("O", i*100+10, j*100+90);
 				}
 			}
 		}
+		
 	}
 		
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 	    moves = model.getMoves();
-		repaint();
+	   // if(model.getWinner()==0)
+			repaint();
 	}
 
 public class ButtonListener implements ActionListener

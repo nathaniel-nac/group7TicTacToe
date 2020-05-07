@@ -18,9 +18,15 @@ public class LightBoard implements BoardFormatter {
     }
 
     @Override
-    public Color formatXOColor() {
+    public Color formatXColor() {
         // TODO Auto-generated method stub
-        return Color.BLACK;
+        return Color.BLUE;
+    }
+
+    @Override
+    public Color formatOColor() {
+        // TODO Auto-generated method stub
+        return Color.MAGENTA;
     }
 
 }

@@ -5,5 +5,6 @@ import java.awt.*;
 public interface BoardFormatter {
 	public Color formatLineColor();
 	public Color formatBoardColor();
-	public Color formatXOColor();
+	public Color formatXColor();
+	public Color formatOColor();
 }

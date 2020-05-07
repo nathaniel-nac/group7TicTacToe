@@ -28,7 +28,6 @@ public class MenuView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				BoardFormatter lb = new LightBoard();
 				Board b = new Board(lb);
 				frame.getContentPane().remove(menu);
@@ -43,7 +42,6 @@ public class MenuView {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				BoardFormatter db = new DarkBoard();
 				Board b = new Board(db);
                 frame.getContentPane().remove(menu);

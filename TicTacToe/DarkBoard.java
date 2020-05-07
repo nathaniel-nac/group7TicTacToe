@@ -17,9 +17,15 @@ public class DarkBoard implements BoardFormatter{
     }
 
     @Override
-    public Color formatXOColor() {
+    public Color formatXColor() {
         // TODO Auto-generated method stub
-        return Color.WHITE;
+        return Color.CYAN;
+    }
+
+    @Override
+    public Color formatOColor() {
+        // TODO Auto-generated method stub
+        return Color.PINK;
     }
     
 }

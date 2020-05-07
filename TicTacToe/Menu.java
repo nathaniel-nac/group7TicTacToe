@@ -19,7 +19,6 @@ public class Menu extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
                 BoardFormatter lb = new LightBoard();
                 Board b = new Board(lb);
                 frame.setContentPane(b);
@@ -32,7 +31,6 @@ public class Menu extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
                 BoardFormatter db = new DarkBoard();
                 Board b = new Board(db);
                 frame.add(b);
