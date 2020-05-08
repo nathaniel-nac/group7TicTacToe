@@ -1,4 +1,4 @@
-package TicTacToe;
+//package TicTacToe;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +10,7 @@ import javax.swing.*;
  * Previously view class
  * This is where we handle all the user's action
  */
-public class MenuView {
+public class TicTacToeTester {
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
