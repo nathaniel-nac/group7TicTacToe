@@ -17,7 +17,9 @@ public class Board extends JPanel implements Observer {
 	private final int PLAYER_ONE = 1;
 	private final int PLAYER_TWO = 2;
 	private int currentPlayer;
+	JButton undo;
 	BoardFormatter formatter;
+	MouseListener mouse;
 
 	public Board(BoardFormatter formatter) {
 	    this.setLayout(new BorderLayout());
@@ -27,7 +29,7 @@ public class Board extends JPanel implements Observer {
 		model.addObserver(this);
 		moves = model.getMoves();
 
-		JButton undo = new JButton("Undo");
+		undo = new JButton("Undo");
 		undo.addActionListener(new ButtonListener());
 		JTextArea winner = new JTextArea();
 		JTextArea player = new JTextArea();
@@ -43,7 +45,7 @@ public class Board extends JPanel implements Observer {
         this.add(bottom, BorderLayout.SOUTH);
 
 		currentPlayer = PLAYER_ONE;
-		this.addMouseListener(new MouseAdapter() {
+		mouse = new MouseAdapter() {
 			private int counter = 0;
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -97,18 +99,27 @@ public class Board extends JPanel implements Observer {
                     currentPlayer = PLAYER_TWO;
                     player.setText("Player 2's Turn");
                 }
-                
+
                 if (model.getWinner()!=0)
                 {
+                	remove();
                     winner.setText("Player " + model.getWinner() + " won!");
                 }
                 else if (model.boardIsFull() && model.getWinner()==0)
                 {
+                	remove();
                     winner.setText("It's a tie!");
                 }
-            }});
-
+                
+            }};
+            this.addMouseListener(mouse);
+            
 		
+	}
+	public void remove()
+	{
+		this.removeMouseListener(mouse);
+		undo.setEnabled(false);
 	}
 
 	public void paintComponent(Graphics g) {
